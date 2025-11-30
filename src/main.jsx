@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import React, { useState, useEffect, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
 import { 
   BookOpen, FileText, CheckCircle, Settings, Download, 
   Menu, X, Home, Clock, Award, ChevronRight, RefreshCw, Printer
 } from 'lucide-react';
 
-// Catatan: jsPDF dimuat via CDN di index.html untuk menghindari error build.
-// Akses via window.jspdf
+// Catatan: jsPDF dimuat via CDN di index.html untuk menghindari error build di lingkungan tertentu.
+// Kita akan mengaksesnya melalui window.jspdf
 
 // ==========================================
 // 1. DATA BANK SOAL (JSON SCHEMA)
@@ -31,6 +31,7 @@ const RAW_BANK_SOAL = [
   { id: 'k5-indo-004', class: '5', subject: 'Bahasa Indonesia', type: 'uraian', question: 'Buatlah sebuah kalimat majemuk setara menggunakan kata hubung "dan"!', answer: 'Ibu memasak di dapur dan Ayah membaca koran di teras.', competency: 'Kalimat Majemuk' },
 ];
 
+// Helper to populate more dummy data to reach strict counts
 const generateDummyData = () => {
   const subjects = ['PAI', 'Pancasila', 'Bahasa Indonesia', 'PLBJ', 'Matematika', 'PJOK', 'Seni Rupa', 'IPAS', 'Bahasa Inggris'];
   const classes = ['1', '2', '3', '4', '5', '6'];
@@ -574,7 +575,7 @@ const QuizMode = () => {
   );
 };
 
-// --- MAIN APP ENTRY ---
+// --- MAIN APP ---
 const App = () => {
   const [view, setView] = useState('home');
 
@@ -594,9 +595,6 @@ const App = () => {
   );
 };
 
-// --- SAFE MOUNTING ---
-const container = document.getElementById('root');
-if (container) {
-  const root = ReactDOM.createRoot(container);
-  root.render(<App />);
-}
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
+export default App;
