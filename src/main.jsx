@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
   BookOpen, FileText, CheckCircle, Settings, Download, 
-  Menu, X, Home, Clock, Award, ChevronRight, RefreshCw, Printer
+  Menu, X, Clock, Award, ChevronRight, RefreshCw, Printer
 } from 'lucide-react';
 
 // Catatan: jsPDF dimuat via CDN di index.html untuk menghindari error build di lingkungan tertentu.
